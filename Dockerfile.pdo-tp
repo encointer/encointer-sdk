@@ -1,0 +1,22 @@
+FROM hyperledger/sawtooth-intkey-tp-python:1.0
+# a ubuntu 16.04 xenial container, because sawtooth doesn't support 18.04
+
+RUN apt-get update \
+  && apt-get install -y \
+    curl \
+    git \
+    python3-cryptography \
+    python3-sawtooth-* \
+    zip \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /project/pdo && cd /project/pdo \
+  && curl -OL https://github.com/google/protobuf/releases/download/v3.2.0/protoc-3.2.0-linux-x86_64.zip \
+  && unzip protoc-3.2.0-linux-x86_64.zip -d protoc3 \
+  && mv protoc3/bin/* /usr/local/bin/ \
+  && mv protoc3/include/* /usr/local/include/ \
+  && git clone https://github.com/hyperledger-labs/private-data-objects.git \
+  && cd private-data-objects \
+  && sawtooth/bin/build_sawtooth_proto \
+

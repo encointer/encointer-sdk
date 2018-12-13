@@ -1,6 +1,7 @@
 ;;
 ;; simple-token.scm
 ;;
+;; (C) Alain Brenzikofer, encointer.org
 
 (require-when (member "debug" *args*) "debug.scm")
 (require "contract-base.scm")

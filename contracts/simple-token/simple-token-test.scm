@@ -1,3 +1,5 @@
+;; unit tests for simple-token
+;; (C) Alain Brenzikofer, encointer.org
 
 (put ':message 'originator "tom")
 (put ':contract 'id "contract1")
